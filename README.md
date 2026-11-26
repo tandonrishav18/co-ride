@@ -1,15 +1,7 @@
-<p align="center">
-  <img src="cover.png" alt="Co-Ride | Rapido" width="100%"/>
-</p>
-
 <h1 align="center">Co-Ride × Rapido</h1>
 
 <p align="center">
-  <strong>A Comprehensive Product & UX Case Study on Community-Powered Ride Sharing within the Rapido Ecosystem</strong>
-</p>
-
-<p align="center">
-  <img src="her.png" alt="Co-Ride | Rapido Wordmark" width="480"/>
+  <strong>Community-Powered Ride Sharing Integrated into the Rapido Ecosystem</strong>
 </p>
 
 <p align="center">
@@ -18,7 +10,7 @@
   <a href="#the-solution">The Solution</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#business-impact">Business Impact</a> •
-  <a href="#interactive-prototype">Prototype</a> •
+  <a href="#interactive-prototype">Interactive Prototype</a> •
   <a href="#getting-started">Run Locally</a>
 </p>
 
@@ -29,7 +21,7 @@
 > *"One person searching for a ride. Another driving with an empty seat. What if we connected them?"*  
 > **Your route. My route. Our ride.**
 
-**Co-Ride** is an end-to-end product design case study exploring how Rapido can introduce community-powered ride sharing to tackle daily commuting challenges. By pairing everyday commuters travelling along overlapping routes, Co-Ride bridges the gap between unmatched riders and vehicle owners with unused seat capacity.
+**Co-Ride** is an end-to-end product concept exploring how Rapido can introduce community-powered ride sharing to tackle daily commuting challenges. By pairing everyday commuters travelling along overlapping routes, Co-Ride bridges the gap between unmatched riders and vehicle owners with unused seat capacity.
 
 ---
 
@@ -39,7 +31,7 @@
   <img src="dist/assets/d9a96.png" alt="Repeated Ride Rejections" width="320"/>
 </p>
 
-Getting from point A to point B during peak hours has become increasingly frustrating:
+Getting from point A to point B during peak hours has become increasingly difficult:
 - **Frequent Cancellations & Rejections**: Commuters often experience repeated rejections (e.g., *"64 of 80 captains rejected your request"*).
 - **Uncertain Wait Times**: Surge pricing, captain shortages, and route mismatch leave riders stranded.
 - **Unused Vehicle Capacity**: Thousands of private vehicles and daily commuters travel with empty seats on the exact same roads at the exact same times.
@@ -89,17 +81,17 @@ Instead of introducing a detached or complicated new app, **Co-Ride** is seamles
 
 ---
 
-## 🎨 Interactive Case Study & Design System
+## 🎨 Interactive Prototype & Design Architecture
 
-The repository includes a production-ready, interactive 10-screen presentation built with modern web technologies:
-- **10 Curated Sections**: Alternating between signature Rapido Gold (`#ffca20`) and crisp white.
+The repository includes a production-ready interactive presentation built with modern web technologies:
+- **10 Curated Sections**: Alternating between signature Rapido Gold (`#ffca20`) and clean white.
 - **Viewport-Responsive Layout**: Dynamically fits screens from mobile viewports to 1080p, 1440p, and 4K displays with zero unwanted vertical overflow.
 - **Smooth Snapping & Keyboard Navigation**: Use `↓` / `Page Down` and `↑` / `Page Up` to transition slide-by-slide.
 - **Embedded Interactive Walkthrough**: Full design presentation video walkthrough.
 
 ---
 
-## 💻 Getting Started (View Locally)
+## 💻 Getting Started (Run Locally)
 
 ### Prerequisites
 - Any modern web browser (Chrome, Edge, Firefox, Safari)
@@ -112,7 +104,7 @@ The repository includes a production-ready, interactive 10-screen presentation b
    cd co-ride
    ```
 
-2. Open the case study:
+2. Open the prototype:
    - Double-click `dist/index.html` to open directly in your browser.
    - Or start a local live server:
      ```bash
@@ -127,16 +119,14 @@ The repository includes a production-ready, interactive 10-screen presentation b
 ```
 co-ride/
 ├── dist/
-│   ├── index.html            # Main 10-section case study presentation
+│   ├── index.html            # Main 10-section interactive prototype presentation
 │   ├── design.css            # Responsive layout & typography styles
 │   ├── phone-reveal.js       # Interactive UI reveal transitions
 │   ├── stickers.js           # Rejection sticker collage animations
 │   ├── video.js              # Video walkthrough player controls
 │   └── assets/               # Production mockups, icons, fonts & video walkthrough
-├── 1.png ... 21.png          # High-resolution Figma mockup exports
-├── cover.png                 # Co-Ride | Rapido header banner
-├── her.png                   # Official Co-Ride | Rapido mark
-├── co.png                    # Splash screen mockups
+├── 1.png ... 21.png          # High-resolution screen mockups
+├── co.png                    # Splash screen mockup
 └── README.md                 # Project documentation
 ```
 
