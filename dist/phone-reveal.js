@@ -18,24 +18,23 @@ if (reveal && panel) {
 
     const pinTop = Math.min(0, window.innerHeight - panel.offsetHeight);
     const revealRect = reveal.getBoundingClientRect();
-    const distance = reveal.offsetHeight - panel.offsetHeight;
-
-    if (distance <= 0) {
-      reveal.style.setProperty("--phone-offset", "0%");
-      return;
-    }
-
     const travelled = pinTop - revealRect.top;
 
-    if (travelled <= 0) {
+    const sectionH = panel.offsetHeight;
+    const holdBefore = 2 * sectionH;      // 2 sections delay before rising
+    const riseDist = 1.25 * sectionH;     // smooth, slow rise distance
+    const holdAfter = 2 * sectionH;       // 2 sections delay after complete appearance
+
+    if (travelled <= holdBefore) {
+      // Phase 1: Initial delay of 2 sections - mockup is hidden
       reveal.style.setProperty("--phone-offset", "100%");
-    } else if (travelled >= distance) {
+    } else if (travelled >= holdBefore + riseDist) {
+      // Phase 3 & 4: Final delay of 2 sections & exit - mockup completely in place
       reveal.style.setProperty("--phone-offset", "0%");
     } else {
-      const progress = travelled / distance;
-      // Reveal smoothly across the first 75% of pinned scroll; hold fully revealed for remaining 25%
-      const revealProgress = Math.min(1, progress / 0.75);
-      const eased = smoothstep(revealProgress);
+      // Phase 2: Mockup rises slowly and smoothly
+      const progress = (travelled - holdBefore) / riseDist;
+      const eased = smoothstep(progress);
       const offset = (1 - eased) * 100;
       reveal.style.setProperty("--phone-offset", offset.toFixed(2) + "%");
     }
