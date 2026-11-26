@@ -1,55 +1,62 @@
-const reveal = document.querySelector(".phone-reveal");
-const panel = reveal ? reveal.querySelector("section") : null;
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
-if (reveal && panel) {
-  let ticking = false;
+function createScrollReveal(containerSelector, offsetProp, travelConfig = {}) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return null;
+  const panel = container.querySelector("section");
+  if (!panel) return null;
 
-  function smoothstep(t) {
-    return t * t * (3 - 2 * t);
-  }
-
-  function update() {
-    ticking = false;
+  return function update() {
     if (reducedMotion.matches) {
-      reveal.style.setProperty("--phone-offset", "0%");
+      container.style.setProperty(offsetProp, "0");
       return;
     }
 
     const pinTop = Math.min(0, window.innerHeight - panel.offsetHeight);
-    const revealRect = reveal.getBoundingClientRect();
-    const travelled = pinTop - revealRect.top;
+    const rect = container.getBoundingClientRect();
+    const travelled = pinTop - rect.top;
 
     const sectionH = panel.offsetHeight;
-    const holdBefore = 2 * sectionH;      // 2 sections delay before rising
-    const riseDist = 1.25 * sectionH;     // smooth, slow rise distance
-    const holdAfter = 2 * sectionH;       // 2 sections delay after complete appearance
+    const holdBefore = (travelConfig.holdBefore ?? 2) * sectionH;
+    const riseDist = (travelConfig.riseDist ?? 1.25) * sectionH;
+    const holdAfter = (travelConfig.holdAfter ?? 2) * sectionH;
 
     if (travelled <= holdBefore) {
-      // Phase 1: Initial delay of 2 sections - mockup is hidden
-      reveal.style.setProperty("--phone-offset", "100%");
+      container.style.setProperty(offsetProp, "1");
     } else if (travelled >= holdBefore + riseDist) {
-      // Phase 3 & 4: Final delay of 2 sections & exit - mockup completely in place
-      reveal.style.setProperty("--phone-offset", "0%");
+      container.style.setProperty(offsetProp, "0");
     } else {
-      // Phase 2: Mockup rises slowly and smoothly
       const progress = (travelled - holdBefore) / riseDist;
-      const eased = smoothstep(progress);
-      const offset = (1 - eased) * 100;
-      reveal.style.setProperty("--phone-offset", offset.toFixed(2) + "%");
+      const eased = progress * progress * (3 - 2 * progress);
+      const offset = 1 - eased;
+      container.style.setProperty(offsetProp, offset.toFixed(4));
     }
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-  }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll, { passive: true });
-  reducedMotion.addEventListener("change", update);
-
-  update();
+  };
 }
+
+const updatePhoneReveal = createScrollReveal(".phone-reveal", "--phone-offset");
+const updateCommutersReveal = createScrollReveal(".commuters-reveal", "--commuters-offset");
+
+let ticking = false;
+
+function onScroll() {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      if (updatePhoneReveal) updatePhoneReveal();
+      if (updateCommutersReveal) updateCommutersReveal();
+    });
+  }
+}
+
+window.addEventListener("scroll", onScroll, { passive: true });
+window.addEventListener("resize", onScroll, { passive: true });
+reducedMotion.addEventListener("change", () => {
+  if (updatePhoneReveal) updatePhoneReveal();
+  if (updateCommutersReveal) updateCommutersReveal();
+});
+
+// Initial calculation on load
+if (updatePhoneReveal) updatePhoneReveal();
+if (updateCommutersReveal) updateCommutersReveal();
