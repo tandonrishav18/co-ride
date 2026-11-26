@@ -23,7 +23,7 @@ li {list-style:none}
 .layout-15 { --tx:-50%;position:absolute;bottom:0;height:35.34722222cqw;left:50%;width:31.52777778cqw;translate:var(--tx,0) var(--ty,0) }
 .layout-16 { position:absolute;height:168.17%;left:-12.39%;max-width:none;top:-1.18%;width:125.8% }
 .phone-reveal,
-.commuters-reveal { background:white;position:relative;height:calc(57.77777778cqw * 8) }
+.commuters-reveal { background:white;position:relative;height:calc(57.77777778cqw * 7.25) }
 .phone-reveal > section,
 .commuters-reveal > section { position:sticky;top:min(0px, calc(100svh - 57.77777778cqw)) }
 .phone-reveal .layout-15 { transform:translateY(calc(var(--phone-offset,1) * 100%));will-change:transform }

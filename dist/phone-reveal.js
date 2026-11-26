@@ -18,7 +18,7 @@ function createScrollReveal(containerSelector, offsetProp, travelConfig = {}) {
 
     const sectionH = panel.offsetHeight;
     const holdBefore = (travelConfig.holdBefore ?? 2) * sectionH;
-    const riseDist = (travelConfig.riseDist ?? 3) * sectionH;
+    const riseDist = (travelConfig.riseDist ?? 2.25) * sectionH;
     const holdAfter = (travelConfig.holdAfter ?? 2) * sectionH;
 
     if (travelled <= holdBefore) {
@@ -27,8 +27,8 @@ function createScrollReveal(containerSelector, offsetProp, travelConfig = {}) {
       container.style.setProperty(offsetProp, "0");
     } else {
       const progress = (travelled - holdBefore) / riseDist;
-      // Smootherstep (Ken Perlin) for ultra-gentle, silky easing
-      const eased = progress * progress * progress * (progress * (6 * progress - 15) + 10);
+      // Pure harmonic sine easing: silky smooth, perfectly balanced velocity
+      const eased = 0.5 - 0.5 * Math.cos(progress * Math.PI);
       const offset = 1 - eased;
       container.style.setProperty(offsetProp, offset.toFixed(4));
     }
