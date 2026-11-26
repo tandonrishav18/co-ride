@@ -22,11 +22,8 @@ li {list-style:none}
 .layout-14 { position:absolute;height:100%;left:-8.21%;max-width:none;top:0;width:114.21% }
 .layout-15 { --tx:-50%;position:absolute;bottom:0;height:35.34722222cqw;left:50%;width:31.52777778cqw;translate:var(--tx,0) var(--ty,0) }
 .layout-16 { position:absolute;height:168.17%;left:-12.39%;max-width:none;top:-1.18%;width:125.8% }
-.phone-reveal { background:white }
-html:has(.phone-reveal.is-active) { overflow-anchor:none }
-.phone-reveal.is-active { height:calc(96cqw + var(--pin-extension,0px));overflow-anchor:none }
-.phone-reveal.is-active > section { position:sticky;top:min(0px, calc(100svh - 57.77777778cqw)) }
-.phone-reveal.is-active .layout-15 { transform:translateY(var(--phone-offset,100%)) }
+.phone-reveal { background:white;position:relative;height:96cqw }
+.phone-reveal > section { position:sticky;top:min(0px, calc(100svh - 57.77777778cqw)) }
 .layout-17 { overflow-wrap:break-word;position:absolute;font-family:"Gveret Levin",cursive;line-height:0;left:2.91666667cqw;font-style:normal;font-size:1.664375cqw;color:black;top:calc(50% - 6.45833333cqw);width:28.19444444cqw }
 .layout-18 { line-height:normal;margin-bottom:0 }
 .layout-19 { line-height:normal }
